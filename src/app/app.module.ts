@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  ShMaterialModule } from './material.module';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     ShMaterialModule,
+    HttpClientModule,
+    
     
   ],
   providers: [],
