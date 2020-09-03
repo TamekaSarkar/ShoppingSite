@@ -1,4 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import '~@angular/material/theming';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@include mat-core();
+
+
+$product-mart-primary: mat-palette($mat-indigo);
+$product-mart-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$custom-typography: mat-typography-config($font-family:'Exo');
+
+// The warn palette is optional (defaults to red).
+$product-mart-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$product-mart-theme: mat-light-theme($product-mart-primary, $product-mart-accent, $product-mart-warn);
+
+
+@include angular-material-theme($product-mart-theme);
+
+
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+    background-color: #f4f3f3;
+    margin:0;
+    app-root*{
+        font-family: Exo,sans-serif;
+    }
+ }
+
+ .left-spacer{
+     margin-left: 5%;
+ }
