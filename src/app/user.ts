@@ -2,5 +2,6 @@ export interface User{
     email:string,
     fullname:string,
     password:string,
-    repeatpassword:string
+    repeatpassword:string,
+    roles:any[]
     }
