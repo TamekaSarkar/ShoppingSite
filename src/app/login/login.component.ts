@@ -8,15 +8,18 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  email:string
-  password:string
+  email:string;
+  password:string;
+  error:string;
 
   constructor(private router:Router,private authservice:AuthService) { }
 
   ngOnInit() {
   }
   login(){
-    this.authservice.login(this.email,this.password).subscribe(s=>this.router.navigate([""]));
+    this.error = '';
+    this.authservice.login(this.email,this.password).
+    subscribe(s=>this.router.navigate([""]),e=>(this.error= e));
     
 
   }
