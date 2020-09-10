@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { of, Subject, throwError } from 'rxjs';
+import { of, Subject, throwError, EMPTY } from 'rxjs';
 import { switchMap, catchError } from 'rxjs/operators'
 import {User }  from './user'
 import { HttpClient } from '@angular/common/http';
 import { TokenStorageService } from './token-storage.service';
 
+interface UserDto {
+  user: User;
+  token: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +19,13 @@ export class AuthService {
   constructor(private httpclient:HttpClient, private tokenstorage:TokenStorageService) { }
   login(email:string,password:string){
     const logincredentials = {email,password};
-    return this.httpclient.post<User>(`${this.apiUrl}login`,logincredentials).pipe
+    return this.httpclient.post<UserDto>(`${this.apiUrl}login`,logincredentials).pipe
     (
-      switchMap(foundUser => {
-        this.setUser(foundUser);
-      // this.tokenstorage.setToken(token);
-       console.log(`user found`,foundUser);
-        return of(foundUser);
+      switchMap(({ user, token}) => {
+        this.setUser(user);
+        //this.tokenstorage.setToken(token);
+       console.log(`user found`,user);
+        return of(user);
       }),
       catchError(e => {
         console.log('login details could not verified!!Please try again',e);
@@ -34,6 +38,8 @@ export class AuthService {
   }
   logout(){
     //remove user from subject
+    //remove token from local storage
+    this.tokenstorage.removeToken();
     this.setUser(null);
     console.log('user logout successfully');
   }
@@ -60,14 +66,14 @@ export class AuthService {
   findMe() {
     const token = this.tokenstorage.getToken();
     if (!token) {
-      return;
+      return EMPTY;
     }
 
     return this.httpclient.get<any>(`${this.apiUrl}findme`).pipe(
-      switchMap(foundUser => {
-        this.setUser(foundUser);
-        console.log(`user found`, foundUser);
-        return of(foundUser);
+      switchMap(({ user }) => {
+        this.setUser(user);
+        console.log(`user found`, user);
+        return of(user);
       }),
       catchError(e => {
         console.log(

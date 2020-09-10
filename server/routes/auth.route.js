@@ -8,7 +8,7 @@ const passport = require("../middleware/passport");
 const router = express.Router();
 //localhost:9000/api/auth/register
 router.post('/register',asyncHandler(insert),login);
-router.post('/login',asyncHandler(getUserByEmailAndPassword),login);
+router.post('/login', asyncHandler( getUserByEmailAndPassword), login);
 router.get("/findme", passport.authenticate("jwt", { session: false }), login);
 
 async function insert(req, res, next) {
