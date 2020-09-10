@@ -6,6 +6,7 @@ const logger = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const routes = require('../routes');
+const passport = require('../middleware/passport');
 
 //ini app
 
@@ -25,6 +26,9 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(helmet());
 //allow cors
 app.use(cors());
+
+// authenticate
+app.use(passport.initialize());
 
 app.use('/api/',routes);
 //serve index.htm;
