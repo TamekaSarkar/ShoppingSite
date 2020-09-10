@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
@@ -19,13 +17,10 @@ const routes: Routes = [
 {
   path:'products',
   loadChildren:'./products/products.module#ProductsModule'
-},{
-  path:'login',
-  component:LoginComponent
 },
 {
-  path:'register',
-  component:RegisterComponent
+  path:'auth',
+  loadChildren:() => import('./auth/auth.module').then(m => m.AuthModule)
 }
 
 
