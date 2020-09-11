@@ -30,6 +30,9 @@ export class ProductsComponent implements OnInit,OnDestroy {
         .subscribe((products) => this.onDataLoad(products))
     );
   }
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
