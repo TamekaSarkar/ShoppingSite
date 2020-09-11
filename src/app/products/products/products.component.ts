@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MatTabHeader, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { MatTableDataSource,MatSort, MatPaginator } from '@angular/material';
 import { ProductDataService } from '@core/products/product-data.service';
 import { Observable } from 'rxjs';
 import { Product } from '@core/products/product';
@@ -16,6 +16,10 @@ export class ProductsComponent implements OnInit,OnDestroy {
   subscriptions = [];
   displayedColumns = ['imgUrl', 'name', 'price', 'addToCart'];
  
+  @ViewChild(MatSort, {static:true}) sort : MatSort
+  @ViewChild(MatPaginator, { static:true}) paginator: MatPaginator;
+
+
   constructor(private productdataservice:ProductDataService) { }
 
   ngOnInit() {
@@ -31,7 +35,8 @@ export class ProductsComponent implements OnInit,OnDestroy {
   }
   onDataLoad(products: Product[]) {
     this.loading = false;
-    
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.dataSource.data = products;
   }
   
