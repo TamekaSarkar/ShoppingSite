@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products/products.component';
-import { ProductDataService } from './product-data.service';
+
 import { HttpClientModule } from '@angular/common/http';
 import { ShMaterialModule } from '../shared/material.module';
 
@@ -16,6 +16,6 @@ import { ShMaterialModule } from '../shared/material.module';
     HttpClientModule,
     ShMaterialModule
   ],
-  providers:[ProductDataService]
+  providers:[]
 })
 export class ProductsModule { }
