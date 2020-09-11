@@ -7,10 +7,10 @@
 
   <mat-card-content>
     <form>
-        <table cellspacing=0>
+        <table cellspacing=0 class="full-width">
             <tr>
                 <td>
-                    <mat-form-field>
+                    <mat-form-field class="full-width">
                         <input name="email" [(ngModel)]="email" matInput placeholder="email" required type="email"/>
                     </mat-form-field>
 
@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <td>
-                    <mat-form-field>
+                    <mat-form-field class="full-width">
                         <input name="password" [(ngModel)]="password" matInput placeholder="password" required type="password"/>
                     </mat-form-field>
                 </td>
@@ -33,7 +33,8 @@
 
 </mat-card-content>
 <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="login()">Login</button>&nbsp;&nbsp;
-    <span>Dont have an account? <a [routerLink]="['/auth/register']">register</a></span>
+    <button class="full-width" mat-raised-button color="primary" (click)="login()"  [tabIndex]="0">Login</button>
+    <div style="margin-top: 2em">
+    <span>Dont have an account? <a [routerLink]="['/auth/register']">SignUp</a></span></div>
 </mat-card-actions>
 </mat-card>
