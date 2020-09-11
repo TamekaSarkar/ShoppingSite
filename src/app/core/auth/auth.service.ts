@@ -4,6 +4,7 @@ import { switchMap, catchError } from 'rxjs/operators'
 import {User }  from '../user'
 import { HttpClient } from '@angular/common/http';
 import { TokenStorageService } from './token-storage.service';
+import { LogService } from '../log.service';
 
 interface UserDto {
   user: User;
@@ -16,7 +17,7 @@ interface UserDto {
 export class AuthService {
  private user$ = new Subject<User>();
   private apiUrl = '/api/auth/';
-  constructor(private httpclient:HttpClient, private tokenstorage:TokenStorageService) { }
+  constructor(private httpclient:HttpClient, private tokenstorage:TokenStorageService,private logService:LogService) { }
   login(email:string,password:string){
     const logincredentials = {email,password};
     return this.httpclient.post<UserDto>(`${this.apiUrl}login`,logincredentials).pipe
@@ -28,7 +29,8 @@ export class AuthService {
         return of(user);
       }),
       catchError(e => {
-        console.log('login details could not verified!!Please try again',e);
+        //console.log('login details could not verified!!Please try again',e);
+        this.logService.log(`server error occures ${e.error.message}`,e)
         return throwError('login details could not verified!!Please try again');
 
       })

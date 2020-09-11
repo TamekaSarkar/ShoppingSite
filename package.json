@@ -35,6 +35,7 @@
     "express-async-handler": "^1.1.4",
     "hammerjs": "^2.0.8",
     "helmet": "^4.1.0",
+    "http-errors": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.3",
     "morgan": "^1.10.0",

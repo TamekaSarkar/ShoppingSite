@@ -7,6 +7,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const routes = require('../routes');
 const passport = require('../middleware/passport');
+const HttpError = require('http-errors')
 
 //ini app
 
@@ -36,5 +37,18 @@ app.use('/api/',routes);
 app.get("*",(req,res)=>
  res.sendFile(path.join(__dirname,'index.html'))
 );
+
+app.use((req,res,next)=>{
+    const error = new HttpError(404);
+    return next(error);
+})
+//error handler
+
+app.use((err,req,res,next)=>{
+    res.status(err.status || 500).json({
+        message: err.message
+    });
+    next(err);
+})
 
 module.exports= app;
