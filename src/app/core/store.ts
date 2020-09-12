@@ -4,8 +4,8 @@ export class Store<T> {
   state$: Observable<T>;
   private _state$: BehaviorSubject<T>;
 
-  protected constructor(intialState: T) {
-    this._state$ = new BehaviorSubject<T>(intialState);// it is private not exposed to outside
+  protected constructor(initialState: T) {
+    this._state$ = new BehaviorSubject<T>(initialState);// it is private not exposed to outside
     this.state$ = this._state$.asObservable();//exposing this state to outside world as observable
   }
 
