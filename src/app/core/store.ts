@@ -1,4 +1,5 @@
 import { Observable, BehaviorSubject } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 
 export class Store<T> {
   state$: Observable<T>;
@@ -7,6 +8,11 @@ export class Store<T> {
   protected constructor(initialState: T) {
     this._state$ = new BehaviorSubject<T>(initialState);// it is private not exposed to outside
     this.state$ = this._state$.asObservable();//exposing this state to outside world as observable
+  }
+  select<T>(selectorFunction: any): Observable<T> {
+    return this.state$.pipe(
+      distinctUntilChanged(),
+      map(selectorFunction));
   }
 
   // sync

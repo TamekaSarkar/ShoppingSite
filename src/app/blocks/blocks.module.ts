@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BlocksRoutingModule } from './blocks-routing.module';
@@ -7,17 +7,20 @@ import { AppComponent } from './root/app.component';
 import { SharedModule } from '../shared/shared.module';
 
 
+
 @NgModule({
   declarations: [HeaderComponent,AppComponent],
   imports: [
     CommonModule,
     BlocksRoutingModule,
-    SharedModule
+    SharedModule,
+   
   ],
   exports:[
     HeaderComponent,
     AppComponent
 
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class BlocksModule { }

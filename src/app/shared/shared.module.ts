@@ -6,22 +6,27 @@ import { RouterModule } from '@angular/router';
 import { ShMaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CartItemsCountComponent } from './cart/cart-items-count/cart-items-count.component';
+import { AddToCartComponent } from './cart/add-to-cart/add-to-cart.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [CartItemsCountComponent,AddToCartComponent],
   imports: [
     CommonModule,
     SharedRoutingModule,
     RouterModule,
     ShMaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+   
   ],
   exports:[
     ShMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule,FlexLayoutModule
+    RouterModule,FlexLayoutModule,
+    CartItemsCountComponent,
+    AddToCartComponent
   ]
 })
 export class SharedModule { }

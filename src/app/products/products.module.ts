@@ -6,6 +6,7 @@ import { ProductsComponent } from './products/products.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ShMaterialModule } from '../shared/material.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ShMaterialModule } from '../shared/material.module';
     CommonModule,
     ProductsRoutingModule,
     HttpClientModule,
-    ShMaterialModule
+    ShMaterialModule,
+    SharedModule
   ],
   providers:[]
 })
